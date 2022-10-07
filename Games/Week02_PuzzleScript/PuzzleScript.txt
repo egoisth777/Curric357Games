@@ -1,0 +1,184 @@
+title Blood Magnets
+author Billy Li
+homepage www.puzzlescript.net
+
+========
+OBJECTS
+========
+
+Background
+red lightred
+00100
+01010
+10001
+00000
+00000
+
+SwappingPad
+green
+
+Target1
+yellow
+
+Target2
+grey
+
+Wall
+darkred darkgreen
+01010
+00100
+01010
+00100
+01010
+
+Player
+red blue darkgray darkgreen
+00200
+03230
+22222
+01210
+02220
+
+Crate1
+brown yellow red
+21112
+10101
+11111
+01110
+21112
+
+
+Crate2
+black gray red
+21112
+10101
+11111
+01110
+21112
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate1
+& = Crate2
+% = Crate1 and Target1
+@ = Crate2 and Target2
+N = Crate1 and Target2
+S = Crate2 and Target1
+O = Target1
+J = Target2
+D = SwappingPad
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target1, Target2, SwappingPad
+Player, Wall, Crate1, Crate2
+
+======
+RULES
+======
+
+(when two crates with different each other glue together)
+[ > Player | Crate1 | Crate2] -> [> Player | > Crate1 | > Crate2]
+[ < Player | Crate2 | Crate1] -> [< Player | < Crate2 | < Crate1]
+
+
+[> Player | Crate1 | Crate2 | Crate1] -> [ > Player |  > Crate1 | > Crate2 | > Crate1]
+[< Player | Crate2 | Crate1 | Crate2] -> [ < Player |  < Crate1 | < Crate2 | < Crate1]
+
+
+(switch)
+[Crate2 | ^ Player SwappingPad | Crate1 ] -> [ Crate1 |  ^ Player SwappingPad | Crate2]
+[Crate1 | ^ Player SwappingPad | Crate2 ] -> [ Crate2 |  ^ Player SwappingPad | Crate1]
+
+(when two trying to glue two same crate1 together)
+
+
+(normal rules)
+[ > Player | Crate1 ] -> [ > Player | > Crate1 ]
+[ < Player | Crate2 ] -> [ < Player | < Crate2 ]
+
+
+
+ 
+
+==============
+WINCONDITIONS
+==============
+
+all Target1 on Crate1
+all Target2 on Crate2
+
+=======
+LEVELS
+=======
+
+#..###...#
+#..#&#...#
+#..#.#...#
+#...j....#
+p...o....#
+#..###...#
+#...*....#
+#........#
+
+########
+#####oj#
+#jo.....
+###.....
+#.&*p*&#
+#......#
+.......#
+
+#.......
+####.*..
+oo%*.p..
+####..&#
+#.....##
+
+(Help the players to learn a new rule)
+#########
+...ojo&*.
+.....*...
+#####.p##
+
+
+(level that actually applied that new rule)
+
+.p.&##&.....
+...*##*.....
+...#####....
+...#####....
+...ojo.j....
+...#####....
+...#####....
+....##......
+
+
+(level used to learn)
+
+..#n#n#n#
+.p.......
+..#s#s#s#
+
+
+....#o#....
+.&..#&#....
+.....d.....
+##.......##
+o&d..p..d*j
+##.......##
+.....d.....
+....#*#....
+....#j#....
